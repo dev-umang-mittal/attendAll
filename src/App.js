@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import * as React from "react";
+import { Admin, Resource, EditGuesser } from 'react-admin';
+import Dashboard from './screens/Dashboard/Dashboard';
+import RegisterationForm from './screens/Form/RegisterationForm';
+import EditForm from './screens/Form/EditForm';
+// import jsonServerProvider from 'ra-data-json-server';
+// import { dataProvider } from "./components/DataProvider";
+// import simpleRestProvider from 'ra-data-simple-rest';
+import EmployeeDetails from "./screens/EmployeeDetails/EmployeeDetails";
+import jsonServerRestClient from 'ra-data-json-server';
+import Attendence from "./screens/Attendance/Attendence";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+// const dataProvider = simpleRestProvider('https://jsonplaceholder.typicode.com');
+const dataProvider = jsonServerRestClient('http://jsonplaceholder.typicode.com');
+
+const App = () => (
+    <Admin title={"React Admin"} dataProvider={dataProvider} dashboard={Dashboard}>
+        {/* <Resource name="Dashboard" list={Dashboard} /> */}
+        <Resource name="attendance" list={Attendence}  />
+        <Resource name="users" list={EmployeeDetails} create={RegisterationForm} edit={EditForm} />
+    </Admin>
+);
 
 export default App;

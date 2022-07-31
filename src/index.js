@@ -1,6 +1,5 @@
 import * as React from "react";
 import { render } from "react-dom";
-import Dashboard from "./screens/Dashboard/Dashboard";
-import RegisterationForm from "./screens/RegisterationForm/RegisterationForm";
+import App from "./App";
 
-render(<RegisterationForm />, document.getElementById("root"));
+render(<App />, document.getElementById("root"));
